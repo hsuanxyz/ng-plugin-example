@@ -18,6 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "plugin-manager": [
+        "dist/plugin-manager"
+      ],
+      "plugin-manager/*": [
+        "dist/plugin-manager/*"
+      ]
+    }
   }
 }

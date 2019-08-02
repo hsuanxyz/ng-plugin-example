@@ -1,20 +1,43 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<nz-layout class="app-layout">
+  <nz-header>
+    <div class="logo">
+      <a>
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>NG-ZORRO</h1>
+      </a>
+    </div>
+    <ul nz-menu class="top-nav" nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item class="ant-menu-item-selected" >Home</li>
+      <li nz-menu-item>Account</li>
+      <li nz-menu-item>Profile</li>
+    </ul>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <div nz-row nzGutter="10">
+        <div nz-col nzSpan="18">
+          <nz-card class="card" *ngFor="let i of [0,0]"  [nzLoading]="true"></nz-card>
+        </div>
+        <div nz-col nzSpan="6" >
+          <nz-card class="card" nzTitle="Widget">
+            Builtin Widget
+          </nz-card>
+          <nz-card class="card" nzTitle="Widget">
+            Builtin Widget
+          </nz-card>
+          <ng-container *ngFor="let plugin of plugins">
+            <ng-container *ngComponentOutlet="plugin.component;
+                                              ngModuleFactory: plugin.moduleFactory
+                                              injector: plugin.injector">
+            </ng-container>
+          </ng-container>
+          <nz-card class="card add-plugin"
+                   *ngIf="plugins.length === 0"
+                   (click)="loadModule('plugin-a')">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+  </nz-content>
+</nz-layout>

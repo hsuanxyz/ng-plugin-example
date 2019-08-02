@@ -25,12 +25,23 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/systemjs/dist/s.js",
+              "node_modules/systemjs/dist/extras/amd.js",
+              "node_modules/systemjs/dist/extras/named-register.js",
+              "node_modules/systemjs/dist/extras/use-default.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -88,6 +99,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.less"
             ],
             "scripts": []
@@ -119,6 +131,77 @@
           }
         }
       }
-    }},
+    },
+    "plugin-a": {
+      "projectType": "library",
+      "root": "projects/plugin-a",
+      "sourceRoot": "projects/plugin-a/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/plugin-a/tsconfig.lib.json",
+            "project": "projects/plugin-a/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/plugin-a/src/test.ts",
+            "tsConfig": "projects/plugin-a/tsconfig.spec.json",
+            "karmaConfig": "projects/plugin-a/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/plugin-a/tsconfig.lib.json",
+              "projects/plugin-a/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "plugin-manager": {
+      "projectType": "library",
+      "root": "projects/plugin-manager",
+      "sourceRoot": "projects/plugin-manager/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/plugin-manager/tsconfig.lib.json",
+            "project": "projects/plugin-manager/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/plugin-manager/src/test.ts",
+            "tsConfig": "projects/plugin-manager/tsconfig.spec.json",
+            "karmaConfig": "projects/plugin-manager/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/plugin-manager/tsconfig.lib.json",
+              "projects/plugin-manager/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "ng-plugin-example"
 }
